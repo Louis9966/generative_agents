@@ -10,12 +10,14 @@ from pathlib import Path
 from openai import AzureOpenAI, OpenAI
 
 from utils import *
-from openai_cost_logger import DEFAULT_LOG_PATH
+# from openai_cost_logger import DEFAULT_LOG_PATH
+
 from persona.prompt_template.openai_logger_singleton import OpenAICostLogger_Singleton
 
 config_path = Path("../../openai_config.json")
 with open(config_path, "r") as f:
-    openai_config = json.load(f) 
+    openai_config = json.load(f)
+
 
 def setup_client(type: str, config: dict):
   """Setup the OpenAI client.
@@ -39,6 +41,7 @@ def setup_client(type: str, config: dict):
   elif type == "openai":
     client = OpenAI(
         api_key=config["key"],
+        base_url="http://10.6.33.62:3001/v1"
     )
   else:
     raise ValueError("Invalid client")
@@ -58,17 +61,18 @@ if openai_config["embeddings-client"] == "azure":
       "endpoint": openai_config["embeddings-endpoint"],
       "key": openai_config["embeddings-key"],
       "api-version": openai_config["embeddings-api-version"],
+
   })
 elif openai_config["embeddings-client"] == "openai":
   embeddings_client = setup_client("openai", { "key": openai_config["embeddings-key"] })
 else:
   raise ValueError("Invalid embeddings client")
 
-cost_logger = OpenAICostLogger_Singleton(
-  experiment_name = openai_config["experiment-name"],
-  log_folder = DEFAULT_LOG_PATH,
-  cost_upperbound = openai_config["cost-upperbound"]
-)
+# cost_logger = OpenAICostLogger_Singleton(
+#   experiment_name = openai_config["experiment-name"],
+#   log_folder = DEFAULT_LOG_PATH,
+#   cost_upperbound = openai_config["cost-upperbound"]
+# )
 
 
 def temp_sleep(seconds=0.1):
@@ -81,9 +85,10 @@ def ChatGPT_single_request(prompt):
     model=openai_config["model"],
     messages=[{"role": "user", "content": prompt}]
   )
-  cost_logger.update_cost(completion, input_cost=openai_config["model-costs"]["input"], output_cost=openai_config["model-costs"]["output"])
+  # cost_logger.update_cost(completion, input_cost=openai_config["model-costs"]["input"], output_cost=openai_config["model-costs"]["output"])
   return completion.choices[0].message.content
 
+print(ChatGPT_single_request("你是谁"))
 
 def ChatGPT_request(prompt): 
   """
@@ -103,7 +108,7 @@ def ChatGPT_request(prompt):
     model=openai_config["model"],
     messages=[{"role": "user", "content": prompt}]
     )
-    cost_logger.update_cost(completion, input_cost=openai_config["model-costs"]["input"], output_cost=openai_config["model-costs"]["output"])
+    # cost_logger.update_cost(completion, input_cost=openai_config["model-costs"]["input"], output_cost=openai_config["model-costs"]["output"])
     return completion.choices[0].message.content
   
   except Exception as e: 
@@ -195,16 +200,16 @@ def GPT_request(prompt, gpt_parameter):
       "role": "system", "content": prompt
     }]
     response = client.chat.completions.create(
-                model=gpt_parameter["engine"],
+                model="qwen2.5:7b",
                 messages=messages,
                 temperature=gpt_parameter["temperature"],
-                max_tokens=gpt_parameter["max_tokens"],
+                max_tokens=200,
                 top_p=gpt_parameter["top_p"],
                 frequency_penalty=gpt_parameter["frequency_penalty"],
                 presence_penalty=gpt_parameter["presence_penalty"],
                 stream=gpt_parameter["stream"],
                 stop=gpt_parameter["stop"],)
-    cost_logger.update_cost(response=response, input_cost=openai_config["model-costs"]["input"], output_cost=openai_config["model-costs"]["output"])
+    # cost_logger.update_cost(response=response, input_cost=openai_config["model-costs"]["input"], output_cost=openai_config["model-costs"]["output"])
     return response.choices[0].message.content
   except Exception as e:
     print(f"Error: {e}")
@@ -268,12 +273,15 @@ def get_embedding(text, model=openai_config["embeddings"]):
   if not text: 
     text = "this is blank"
   response = embeddings_client.embeddings.create(input=[text], model=model)
-  cost_logger.update_cost(response=response, input_cost=openai_config["embeddings-costs"]["input"], output_cost=openai_config["embeddings-costs"]["output"])
+  # cost_logger.update_cost(response=response, input_cost=openai_config["embeddings-costs"]["input"], output_cost=openai_config["embeddings-costs"]["output"])
   return response.data[0].embedding
 
 
+
+
+
 if __name__ == '__main__':
-  gpt_parameter = {"engine": openai_config["model"], "max_tokens": 50, 
+  gpt_parameter = {"engine": openai_config["model"], "max_tokens": 100,
                    "temperature": 0, "top_p": 1, "stream": False,
                    "frequency_penalty": 0, "presence_penalty": 0, 
                    "stop": ['"']}

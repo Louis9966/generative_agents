@@ -45,8 +45,8 @@
 	// Configuration meant to be passed to the main Phaser game instance. 
 	const config = {
 	  type: Phaser.AUTO,
-	  width: 1500,
-	  height: 800,
+	  width: 4480,
+	  height: 3200,
 	  parent: "game-container",
 	  pixelArt: true,
 	  physics: {
@@ -56,7 +56,8 @@
 	  scene: {
 	    preload: preload,
 	    create: create,
-	    update: update } };
+	    update: update },
+      scale: {zoom: 0.5} };
 
 	// const config = {
 	//   type: Phaser.AUTO,

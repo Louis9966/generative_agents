@@ -1,23 +1,23 @@
 {
   "Latoya Williams": {
     "maze": "the_ville",
-    "x": 16,
-    "y": 18
+    "x": 35,
+    "y": 26
   },
   "Rajiv Patel": {
     "maze": "the_ville",
-    "x": 25,
-    "y": 18
+    "x": 34,
+    "y": 31
   },
   "Abigail Chen": {
     "maze": "the_ville",
-    "x": 36,
-    "y": 18
+    "x": 39,
+    "y": 19
   },
   "Francisco Lopez": {
     "maze": "the_ville",
-    "x": 16,
-    "y": 32
+    "x": 35,
+    "y": 31
   },
   "Hailey Johnson": {
     "maze": "the_ville",
@@ -26,8 +26,8 @@
   },
   "Arthur Burton": {
     "maze": "the_ville",
-    "x": 54,
-    "y": 14
+    "x": 60,
+    "y": 15
   },
   "Ryan Park": {
     "maze": "the_ville",
@@ -36,23 +36,23 @@
   },
   "Isabella Rodriguez": {
     "maze": "the_ville",
-    "x": 73,
-    "y": 14
+    "x": 66,
+    "y": 32
   },
   "Giorgio Rossi": {
     "maze": "the_ville",
     "x": 87,
-    "y": 18
+    "y": 21
   },
   "Carlos Gomez": {
     "maze": "the_ville",
     "x": 93,
-    "y": 18
+    "y": 14
   },
   "Klaus Mueller": {
     "maze": "the_ville",
-    "x": 127,
-    "y": 46
+    "x": 115,
+    "y": 54
   },
   "Maria Lopez": {
     "maze": "the_ville",
@@ -61,67 +61,67 @@
   },
   "Ayesha Khan": {
     "maze": "the_ville",
-    "x": 119,
-    "y": 61
+    "x": 40,
+    "y": 37
   },
   "Wolfgang Schulz": {
     "maze": "the_ville",
     "x": 107,
-    "y": 62
+    "y": 59
   },
   "Mei Lin": {
     "maze": "the_ville",
     "x": 90,
-    "y": 74
+    "y": 70
   },
   "John Lin": {
     "maze": "the_ville",
     "x": 91,
-    "y": 74
+    "y": 61
   },
   "Eddy Lin": {
     "maze": "the_ville",
-    "x": 94,
-    "y": 74
+    "x": 97,
+    "y": 66
   },
   "Jane Moreno": {
     "maze": "the_ville",
-    "x": 72,
+    "x": 70,
     "y": 74
   },
   "Tom Moreno": {
     "maze": "the_ville",
-    "x": 73,
-    "y": 74
+    "x": 80,
+    "y": 50
   },
   "Tamara Taylor": {
     "maze": "the_ville",
-    "x": 55,
-    "y": 74
+    "x": 54,
+    "y": 75
   },
   "Carmen Ortiz": {
     "maze": "the_ville",
-    "x": 58,
-    "y": 74
+    "x": 64,
+    "y": 32
   },
   "Adam Smith": {
     "maze": "the_ville",
     "x": 21,
-    "y": 65
+    "y": 64
   },
   "Yuriko Yamamoto": {
     "maze": "the_ville",
     "x": 29,
-    "y": 65
+    "y": 62
   },
   "Sam Moore": {
     "maze": "the_ville",
-    "x": 36,
-    "y": 65
+    "x": 31,
+    "y": 50
   },
   "Jennifer Moore": {
     "maze": "the_ville",
     "x": 37,
-    "y": 65
+    "y": 61
   }
 }

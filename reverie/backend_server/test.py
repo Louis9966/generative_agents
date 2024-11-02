@@ -10,7 +10,8 @@ import openai
 import time 
 
 from utils import *
-openai.api_key = openai_api_key
+openai.api_key = "ollama"
+openai.base_url = "http://10.6.33.62:3001"
 
 def ChatGPT_request(prompt): 
   """
@@ -27,7 +28,7 @@ def ChatGPT_request(prompt):
   # temp_sleep()
   try: 
     completion = openai.ChatCompletion.create(
-    model="gpt-35-turbo-0125", 
+    model="qwen2.5:7b",
     messages=[{"role": "user", "content": prompt}]
     )
     return completion["choices"][0]["message"]["content"]
